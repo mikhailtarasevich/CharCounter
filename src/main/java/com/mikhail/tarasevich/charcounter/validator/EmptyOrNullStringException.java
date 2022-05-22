@@ -1,4 +1,4 @@
-package com.mikhail.tarasevich.charcounter;
+package com.mikhail.tarasevich.charcounter.validator;
 
 public class EmptyOrNullStringException extends RuntimeException {
 

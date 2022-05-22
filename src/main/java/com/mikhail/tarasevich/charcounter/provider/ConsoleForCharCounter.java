@@ -1,4 +1,4 @@
-package com.mikhail.tarasevich.charcounter;
+package com.mikhail.tarasevich.charcounter.provider;
 
 public class ConsoleForCharCounter {
 

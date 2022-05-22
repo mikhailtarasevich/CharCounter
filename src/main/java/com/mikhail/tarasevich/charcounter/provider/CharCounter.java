@@ -1,11 +1,12 @@
-package com.mikhail.tarasevich.charcounter;
+package com.mikhail.tarasevich.charcounter.provider;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedHashMap;
+
+import com.mikhail.tarasevich.charcounter.validator.EmptyOrNullStringException;
 
 public class CharCounter {
 
-	public Map<Character, Integer> countUniqueChars(String sentence) {
+	public LinkedHashMap<Character, Integer> countUniqueChars(String sentence) {
 
 		validate(sentence);
 			
@@ -22,9 +23,9 @@ public class CharCounter {
 		}
 	}
 
-	private Map<Character, Integer> uniqueCharCounter (String sentence) {
+	private LinkedHashMap<Character, Integer> uniqueCharCounter (String sentence) {
 		char[] strToArray = sentence.toCharArray();
-		Map<Character, Integer> hashMapOfUniqueCharacters = new HashMap<Character, Integer>();
+		LinkedHashMap<Character, Integer> hashMapOfUniqueCharacters = new LinkedHashMap<Character, Integer>();
 		for (int i = 0; i < strToArray.length; i++){
 			if (hashMapOfUniqueCharacters.get(strToArray[i]) == null){
 				hashMapOfUniqueCharacters.put(strToArray[i], 1);
