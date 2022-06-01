@@ -14,8 +14,8 @@ public class ConsoleForCharCounterApplication {
 		CharCounter charCounter = new CharCounterImpl();
 		HashMapToStringConverter hashMapToStringConverter = new HashMapToStringConverterImpl();
 		
-		CharCounterApplication text = new CharCounterApplication(validator, charCounter, hashMapToStringConverter);
-		System.out.println(text.countCharactersInText("Alexey is real programmer"));
+		CharCounterApplication ñharCounterApplication = new CharCounterApplication(validator, charCounter, hashMapToStringConverter);
+		System.out.println(ñharCounterApplication.countCharactersInText("Alexey is real programmer"));
 	}
 
 }
