@@ -21,7 +21,7 @@ class CharCounterApplicationTest {
 	
 	@Test
 	public void countCharactersInText_inputIsString_expectedStringWithAmountOfUniqueCharacter() {
-		assertThat(charCounterApplication.countCharactersInText("He 22")).isEqualTo("He 22" + "\n" + "\"" + "H" + "\"" + " = 1" + "\n" + "\"" + "e" + "\"" + " = 1" + "\n" + "\"" + " " + "\"" + " = 1" + "\n" + "\"" + "2" + "\"" + " = 2"); 
+		assertThat(charCounterApplication.countCharactersInText("He 22")).isEqualTo("He 22" + "\n\"H\" = 1;\n\"e\" = 1;\n\" \" = 1;\n\"2\" = 2."); 
 	}
 	
 	@Test
