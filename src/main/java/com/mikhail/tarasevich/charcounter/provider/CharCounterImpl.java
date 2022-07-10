@@ -1,20 +1,16 @@
 package com.mikhail.tarasevich.charcounter.provider;
 
 import java.util.LinkedHashMap;
+import java.util.stream.Collectors;
 
 public class CharCounterImpl implements CharCounter {
 
-	public LinkedHashMap<Character, Integer> uniqueCharCounter (String text) {
-		char[] strToArray = text.toCharArray();
-		LinkedHashMap<Character, Integer> linkedHashMapOfUniqueCharacters = new LinkedHashMap<Character, Integer>();
-		for (int i = 0; i < strToArray.length; i++){
-			if (linkedHashMapOfUniqueCharacters.get(strToArray[i]) == null){
-				linkedHashMapOfUniqueCharacters.put(strToArray[i], 1);
-			} else {
-				linkedHashMapOfUniqueCharacters.replace(strToArray[i], linkedHashMapOfUniqueCharacters.get(strToArray[i]) + 1);
-			}
-		}
-		return linkedHashMapOfUniqueCharacters;
+	public LinkedHashMap<Character, Long> uniqueCharCounter(String text) {
+		
+		return text.chars().mapToObj(item -> (char) item).collect(Collectors.toMap(key -> key, value -> {
+			return text.chars().mapToObj(item -> (char)item).filter(value::equals).count();
+		}, (e1, e2) -> e1, LinkedHashMap::new));
+
 	}
-	
+
 }

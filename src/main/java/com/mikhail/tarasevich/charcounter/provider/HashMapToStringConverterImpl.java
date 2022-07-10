@@ -1,15 +1,15 @@
 package com.mikhail.tarasevich.charcounter.provider;
 
 import java.util.LinkedHashMap;
+import java.util.stream.Collectors;
 
 public class HashMapToStringConverterImpl implements HashMapToStringConverter {
 
-	public String convertHashMapToString(LinkedHashMap<Character, Integer> map, String text) {
-	    StringBuilder mapAsString = new StringBuilder(text);
-	    for (Character key : map.keySet()) {
-	        mapAsString.append("\n" + "\"" + key + "\"" + " = " + map.get(key));
-	    }
-	    return mapAsString.toString();
+	public String convertHashMapToString(LinkedHashMap<Character, Long> hashMap, String text) {
+	    
+		return hashMap.entrySet().stream().map(entry -> "\"" + entry.getKey() + "\"" + " = " + entry.getValue())
+				.collect(Collectors.joining(";" + "\n", text + "\n", "."));
+	
 	}
-
+	
 }

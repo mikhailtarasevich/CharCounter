@@ -4,6 +4,6 @@ import java.util.LinkedHashMap;
 
 public interface HashMapToStringConverter {
 
-	public String convertHashMapToString(LinkedHashMap<Character, Integer> map, String text);
-	
+	public String convertHashMapToString(LinkedHashMap<Character, Long> hashMap, String text);
+
 }

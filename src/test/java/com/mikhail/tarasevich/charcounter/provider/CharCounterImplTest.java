@@ -1,9 +1,7 @@
 package com.mikhail.tarasevich.charcounter.provider;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.LinkedHashMap;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
