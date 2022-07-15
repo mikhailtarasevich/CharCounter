@@ -15,7 +15,7 @@ class CharCounterImplTest {
 
 	@Test
 	void uniqueCharCounter_inputFromWordsSymbolsNumerals_expectedAmountOfUniqueCharacters() {
-		
+
 		expectedLinkedHashMap.put('H', 1l);
 		expectedLinkedHashMap.put('e', 1l);
 		expectedLinkedHashMap.put('l', 1l);
@@ -23,28 +23,40 @@ class CharCounterImplTest {
 		expectedLinkedHashMap.put('2', 2l);
 		text = "Hel 22";
 		assertEquals(expectedLinkedHashMap, charCounterImpl.uniqueCharCounter(text));
-		
+
 	}
-	
+
 	@Test
 	void uniqueCharCounter_inputFromWhiteSpaces_expectedAmountOfWhiteSpaces() {
-		
+
 		expectedLinkedHashMap.put(' ', 4l);
 		text = "    ";
-		//assertEquals(expectedLinkedHashMap, charCounterImpl.uniqueCharCounter(text));
+		// assertEquals(expectedLinkedHashMap, charCounterImpl.uniqueCharCounter(text));
 		assertTrue(expectedLinkedHashMap.entrySet().equals(charCounterImpl.uniqueCharCounter(text).entrySet()));
-		
+
 	}
-	
+
 	@Test
 	void uniqueCharCounter_inputIsNull_expectedNullPointerException() {
-		
+
 		expectedLinkedHashMap.put(null, 1l);
 		text = null;
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			charCounterImpl.uniqueCharCounter(text);
 		});
-		
+
+	}
+
+	@Test
+	void uniqueCharCounter_inputFillCacheWithDifferentResults_expectedCacheContainsTwoLastResults() {
+
+		String text1 = "Hello 22";
+		String text2 = "How ar!";
+		String text3 = "Privet$  ";
+		charCounterImpl.uniqueCharCounter(text1);
+		charCounterImpl.uniqueCharCounter(text2);
+		charCounterImpl.uniqueCharCounter(text3);
+		assertTrue(charCounterImpl.cache.getCache().containsKey(text2));
 	}
 
 }

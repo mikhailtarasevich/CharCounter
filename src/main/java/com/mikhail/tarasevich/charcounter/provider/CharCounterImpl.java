@@ -4,13 +4,23 @@ import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
 
 public class CharCounterImpl implements CharCounter {
+	public LRUCacheImpl cache = new LRUCacheImpl(2);
 
 	public LinkedHashMap<Character, Long> uniqueCharCounter(String text) {
-		
-		return text.chars().mapToObj(item -> (char) item).collect(Collectors.toMap(key -> key, value -> {
-			return text.chars().mapToObj(item -> (char)item).filter(value::equals).count();
-		}, (e1, e2) -> e1, LinkedHashMap::new));
 
+		if (cache.getCache().containsKey(text)) {
+			cache.cacheable(text, cache.getCache().get(text));
+			return cache.getCache().get(text);
+		} else {
+			LinkedHashMap<Character, Long> uniqueCharMap = text.chars().mapToObj(item -> (char) item)
+					.collect(Collectors.toMap(key -> key, value -> {
+						return text.chars().mapToObj(item -> (char) item).filter(value::equals).count();
+					}, (e1, e2) -> e1, LinkedHashMap::new));
+			cache.cacheable(text, uniqueCharMap);
+		}
+		
+		return cache.getCache().get(text);
+		
 	}
 
 }

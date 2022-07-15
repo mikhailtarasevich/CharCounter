@@ -15,6 +15,10 @@ public class ConsoleForCharCounterApplication {
 		HashMapToStringConverter hashMapToStringConverter = new HashMapToStringConverterImpl();
 		
 		CharCounterApplication ñharCounterApplication = new CharCounterApplication(validator, charCounter, hashMapToStringConverter);
+	
+		System.out.println(ñharCounterApplication.countCharactersInText("2222 22"));
+		System.out.println(ñharCounterApplication.countCharactersInText("Hello 22"));
+		System.out.println(ñharCounterApplication.countCharactersInText("dfg 22"));
 		System.out.println(ñharCounterApplication.countCharactersInText("Hello 22"));
 	}
 
