@@ -46,17 +46,4 @@ class CharCounterImplTest {
 		});
 
 	}
-
-	@Test
-	void uniqueCharCounter_inputFillCacheWithDifferentResults_expectedCacheContainsTwoLastResults() {
-
-		String text1 = "Hello 22";
-		String text2 = "How ar!";
-		String text3 = "Privet$  ";
-		charCounterImpl.uniqueCharCounter(text1);
-		charCounterImpl.uniqueCharCounter(text2);
-		charCounterImpl.uniqueCharCounter(text3);
-		assertTrue(charCounterImpl.cache.getCache().containsKey(text2));
-	}
-
 }

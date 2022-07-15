@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class LRUCacheImpl implements LRUCache {
 	private Map<String, LinkedHashMap<Character, Long>> cache;
-	private final int windowSize;
+	private int windowSize;
 
 	public LRUCacheImpl(final int windowSize) {
 		this.windowSize = windowSize;

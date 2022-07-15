@@ -8,6 +8,8 @@ import com.mikhail.tarasevich.charcounter.provider.CharCounter;
 import com.mikhail.tarasevich.charcounter.provider.CharCounterImpl;
 import com.mikhail.tarasevich.charcounter.provider.HashMapToStringConverter;
 import com.mikhail.tarasevich.charcounter.provider.HashMapToStringConverterImpl;
+import com.mikhail.tarasevich.charcounter.provider.LRUCache;
+import com.mikhail.tarasevich.charcounter.provider.LRUCacheImpl;
 import com.mikhail.tarasevich.charcounter.validator.Validator;
 import com.mikhail.tarasevich.charcounter.validator.ValidatorImpl;
 
@@ -16,7 +18,8 @@ class CharCounterApplicationTest {
 	Validator validator = new ValidatorImpl();
 	CharCounter charCounter = new CharCounterImpl();
 	HashMapToStringConverter hashMapToStringConverter = new HashMapToStringConverterImpl();
-	CharCounterApplication charCounterApplication = new CharCounterApplication(validator, charCounter, hashMapToStringConverter);
+	LRUCache lRUCache = new LRUCacheImpl(2);
+	CharCounterApplication charCounterApplication = new CharCounterApplication(validator, charCounter, hashMapToStringConverter, lRUCache);
 	
 	
 	@Test
