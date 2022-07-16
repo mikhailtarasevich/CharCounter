@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class HashMapToStringConverterImplTest {
 
-	HashMapToStringConverterImpl hashMapToStringConverterImpl = new HashMapToStringConverterImpl();
+	ViewProviderImpl viewProviderImpl = new ViewProviderImpl();
 	String inputString;
 	String expectedString;
 	LinkedHashMap<Character, Long> inputHashMap = new LinkedHashMap<Character, Long>();
@@ -23,7 +23,7 @@ class HashMapToStringConverterImplTest {
 		inputHashMap.put(' ', 1l);
 		inputHashMap.put('2', 2l);		
 		expectedString = inputString + "\n\"H\" = 1;\n\"e\" = 1;\n\"l\" = 2;\n\"o\" = 1;\n\" \" = 1;\n\"2\" = 2.";
-		assertEquals(expectedString, hashMapToStringConverterImpl.convertHashMapToString(inputHashMap, inputString));
+		assertEquals(expectedString, viewProviderImpl.provideView(inputHashMap, inputString));
 		
 	}
 	

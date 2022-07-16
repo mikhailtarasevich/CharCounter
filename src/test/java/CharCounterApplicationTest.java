@@ -1,15 +1,18 @@
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.LinkedHashMap;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.mikhail.tarasevich.charcounter.CharCounterApplication;
+import com.mikhail.tarasevich.charcounter.provider.CacheProviderImpl;
 import com.mikhail.tarasevich.charcounter.provider.CharCounter;
 import com.mikhail.tarasevich.charcounter.provider.CharCounterImpl;
-import com.mikhail.tarasevich.charcounter.provider.HashMapToStringConverter;
-import com.mikhail.tarasevich.charcounter.provider.HashMapToStringConverterImpl;
-import com.mikhail.tarasevich.charcounter.provider.LRUCache;
-import com.mikhail.tarasevich.charcounter.provider.LRUCacheImpl;
+import com.mikhail.tarasevich.charcounter.provider.ViewProvider;
+import com.mikhail.tarasevich.charcounter.provider.ViewProviderImpl;
+import com.mikhail.tarasevich.charcounter.provider.CacheProvider;
+import com.mikhail.tarasevich.charcounter.provider.CacheProviderImpl;
 import com.mikhail.tarasevich.charcounter.validator.Validator;
 import com.mikhail.tarasevich.charcounter.validator.ValidatorImpl;
 
@@ -17,9 +20,9 @@ class CharCounterApplicationTest {
 	
 	Validator validator = new ValidatorImpl();
 	CharCounter charCounter = new CharCounterImpl();
-	HashMapToStringConverter hashMapToStringConverter = new HashMapToStringConverterImpl();
-	LRUCache lRUCache = new LRUCacheImpl(2);
-	CharCounterApplication charCounterApplication = new CharCounterApplication(validator, charCounter, hashMapToStringConverter, lRUCache);
+	ViewProviderImpl viewProviderImpl = new ViewProviderImpl();
+	CacheProviderImpl<String, LinkedHashMap<Character, Long>> cacheProviderImpl = new CacheProviderImpl();
+	CharCounterApplication charCounterApplication = new CharCounterApplication(validator, charCounter, viewProviderImpl, cacheProviderImpl);
 	
 	
 	@Test

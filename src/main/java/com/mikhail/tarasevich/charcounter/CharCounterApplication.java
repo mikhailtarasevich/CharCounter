@@ -2,35 +2,37 @@ package com.mikhail.tarasevich.charcounter;
 
 
 import com.mikhail.tarasevich.charcounter.provider.CharCounter;
-import com.mikhail.tarasevich.charcounter.provider.HashMapToStringConverter;
-import com.mikhail.tarasevich.charcounter.provider.LRUCache;
-import com.mikhail.tarasevich.charcounter.provider.LRUCacheImpl;
+import com.mikhail.tarasevich.charcounter.provider. ViewProvider;
+
+import java.util.LinkedHashMap;
+
+import com.mikhail.tarasevich.charcounter.provider.CacheProvider;
 import com.mikhail.tarasevich.charcounter.validator.Validator;
 
 public class CharCounterApplication {
 
 	private Validator validator;
 	private CharCounter charCounter;
-	private HashMapToStringConverter hashMapToStringConverter;
-	private LRUCache lRUCache;
+	private ViewProvider  viewProvider;
+	private CacheProvider<String, LinkedHashMap<Character, Long>> cacheProvider;
 
 	public CharCounterApplication(Validator validator, CharCounter charCounter,
-			HashMapToStringConverter hashMapToStringConverter, LRUCache lRUCache) {
+			 ViewProvider  viewProvider, CacheProvider cacheProvider) {
 		this.validator = validator;
 		this.charCounter = charCounter;
-		this.hashMapToStringConverter = hashMapToStringConverter;
-		this.lRUCache = lRUCache;
+		this.viewProvider = viewProvider;
+		this.cacheProvider = cacheProvider;
 	}
 
 	public String countCharactersInText(String text) {
 		validator.validate(text);
-		if (lRUCache.getCache().containsKey(text)) {
-			lRUCache.cacheable(text, lRUCache.getCache().get(text));
-			return hashMapToStringConverter.convertHashMapToString(lRUCache.getCache().get(text), text);
+		if (cacheProvider.contains(text)) {
+	
+			return viewProvider.provideView(cacheProvider.get(text), text);
 		}else {
-			lRUCache.cacheable(text, charCounter.uniqueCharCounter(text));
+			cacheProvider.put(text, charCounter.uniqueCharCounter(text));
 			}			
-		return hashMapToStringConverter.convertHashMapToString(lRUCache.getCache().get(text), text);
+		return viewProvider.provideView(cacheProvider.get(text), text);
 	}
 	
 }

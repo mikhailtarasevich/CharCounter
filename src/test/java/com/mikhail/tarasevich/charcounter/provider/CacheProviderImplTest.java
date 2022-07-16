@@ -6,9 +6,9 @@ import java.util.LinkedHashMap;
 
 import org.junit.jupiter.api.Test;
 
-class LRUCacheImplTest {
+class CacheProviderImplTest {
 
-	LRUCacheImpl cache = new LRUCacheImpl(2);
+	CacheProviderImpl<String, LinkedHashMap<Character, Long>> cache = new CacheProviderImpl();
 
 	@Test
 	void getCache_inputMapCreatedWithCachableMethodAndMapCreatedWithPutMethod_expectedTheyAreEquals() {
@@ -29,10 +29,11 @@ class LRUCacheImplTest {
 		expectedLinkedHashMap.put(str1, map1);
 		expectedLinkedHashMap.put(str2, map2);
 
-		cache.cacheable(str1, map1);
-		cache.cacheable(str2, map2);
+		cache.put(str1, map1);
+		cache.put(str2, map2);
 
-		assertEquals(expectedLinkedHashMap, cache.getCache());
+		assertEquals(expectedLinkedHashMap.get(str1), cache.get(str1));
+		assertEquals(expectedLinkedHashMap.get(str2), cache.get(str2));
 	}
 
 	@Test
@@ -55,11 +56,12 @@ class LRUCacheImplTest {
 		expectedLinkedHashMap.put(str1, map1);
 		
 
-		cache.cacheable(str1, map1);
-		cache.cacheable(str2, map2);
-		cache.cacheable(str1, map1);
+		cache.put(str1, map1);
+		cache.put(str2, map2);
+		cache.put(str1, map1);
 		
-		assertEquals(expectedLinkedHashMap, cache.getCache());
+		assertEquals(expectedLinkedHashMap.get(str1), cache.get(str1));
+		assertEquals(expectedLinkedHashMap.get(str2), cache.get(str2));
 	}
 		
 }
