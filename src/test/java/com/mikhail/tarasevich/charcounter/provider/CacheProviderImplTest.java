@@ -8,22 +8,22 @@ import org.junit.jupiter.api.Test;
 
 class CacheProviderImplTest {
 
-	CacheProviderImpl<String, LinkedHashMap<Character, Long>> cache = new CacheProviderImpl();
+	private CacheProviderImpl<String, LinkedHashMap<Character, Long>> cache = new CacheProviderImpl();
 
 	@Test
 	void getCache_inputMapCreatedWithCachableMethodAndMapCreatedWithPutMethod_expectedTheyAreEquals() {
 
 		String str1 = "kkrrr4444";
 		LinkedHashMap<Character, Long> map1 = new LinkedHashMap<Character, Long>();
-		map1.put('k', 2l);
-		map1.put('r', 3l);
-		map1.put('4', 4l);
+		map1.put('k', 2L);
+		map1.put('r', 3L);
+		map1.put('4', 4L);
 
 		String str2 = "gggggggttttrrr";
 		LinkedHashMap<Character, Long> map2 = new LinkedHashMap<Character, Long>();
-		map2.put('g', 7l);
-		map2.put('t', 4l);
-		map2.put('r', 3l);
+		map2.put('g', 7L);
+		map2.put('t', 4L);
+		map2.put('r', 3L);
 
 		LinkedHashMap<String, LinkedHashMap<Character, Long>> expectedLinkedHashMap = new LinkedHashMap<String, LinkedHashMap<Character, Long>>(2);
 		expectedLinkedHashMap.put(str1, map1);
@@ -41,15 +41,15 @@ class CacheProviderImplTest {
 
 		String str1 = "kkrrr4444";
 		LinkedHashMap<Character, Long> map1 = new LinkedHashMap<Character, Long>();
-		map1.put('k', 2l);
-		map1.put('r', 3l);
-		map1.put('4', 4l);
+		map1.put('k', 2L);
+		map1.put('r', 3L);
+		map1.put('4', 4L);
 
 		String str2 = "gggggggttttrrr";
 		LinkedHashMap<Character, Long> map2 = new LinkedHashMap<Character, Long>();
-		map2.put('g', 7l);
-		map2.put('t', 4l);
-		map2.put('r', 3l);
+		map2.put('g', 7L);
+		map2.put('t', 4L);
+		map2.put('r', 3L);
 
 		LinkedHashMap<String, LinkedHashMap<Character, Long>> expectedLinkedHashMap = new LinkedHashMap<String, LinkedHashMap<Character, Long>>(2);
 		expectedLinkedHashMap.put(str2, map2);

@@ -1,5 +1,7 @@
 package com.mikhail.tarasevich.charcounter;
 
+import java.util.LinkedHashMap;
+
 import com.mikhail.tarasevich.charcounter.provider.CharCounter;
 import com.mikhail.tarasevich.charcounter.provider.CharCounterImpl;
 import com.mikhail.tarasevich.charcounter.provider.ViewProvider;
@@ -15,14 +17,15 @@ public class ConsoleForCharCounterApplication {
 		Validator validator = new ValidatorImpl();
 		CharCounter charCounter = new CharCounterImpl();
 		ViewProvider viewProvider = new ViewProviderImpl();
-		CacheProvider cacheProvider = new CacheProviderImpl();
-		
+		CacheProvider<String, LinkedHashMap<Character, Long>> cacheProvider = new CacheProviderImpl<>();
+
 		CharCounterApplication ñharCounterApplication = new CharCounterApplication(validator, charCounter, viewProvider, cacheProvider);
-	
+
 		System.out.println(ñharCounterApplication.countCharactersInText("2222 22"));
 		System.out.println(ñharCounterApplication.countCharactersInText("Hello 22"));
 		System.out.println(ñharCounterApplication.countCharactersInText("dfg 22"));
 		System.out.println(ñharCounterApplication.countCharactersInText("Hello 22"));
+
 	}
 
 }
